@@ -1,0 +1,104 @@
+body {
+    background-image:
+url('https://media.admagazine.fr/photos/6181174d3b2d79a45baebb53/16:9/w_2560%2Cc_limit/DSC00699-HDR%2520(2).jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.pays-label {
+    margin-left: 10px; /* Ajoute une marge à gauche */
+    margin-right: 10px; /* Ajoute une marge à droite */
+}
+
+#adultes, #enfants, #chambres, #lieu {
+    text-align: center;
+}
+
+.cadre {
+    background-color:#f6ac97;
+    padding:1px;
+    width: 50%;
+    margin-left: auto; /* Centre le cadre horizontalement */
+    margin-right: auto; /* Centre le cadre horizontalement */
+}
+
+.texte-centre {
+    color: darkred;
+    text-align: center;
+}
+
+.pied-de-page {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 4%;
+    background-color:#f8f8f8;
+    text-align:center;
+    line-height: 3px; /* Assurez-vous que la ligne est centrée verticalement */
+}
+
+form {
+    margin-left: 3cm; /* Décalage de 6cm vers la droite */
+}
+
+.btn {
+    border-radius: 3em;
+    color: white;
+    background-color: darkred;
+    border : 0;
+    height : 2.5em;
+    width: 18em;
+    margin: 4px 2px;
+}
+
+/* Style pour réduire la longueur du champ input */
+#adultes, #enfants, #chambres {
+    width: 30px; /* Ajustez cette valeur selon vos besoins */
+}
+
+/* Style pour centrer le texte dans les cellules du tableau */
+td {
+    text-align: center;
+}
+
+table {
+    background-color: #ffd8c8; /* Choisissez la couleur que vous préférez */
+    border-color: #01013F; /* Couleur de la bordure */
+    border-width: 2px; /* Largeur de la bordure */
+    border-style: solid; /* Style de la bordure */
+}
+
+/* Remplir le bord de la table en noir */
+table {
+    border: 2px solid black;
+}
+
+#depart, #arrive {
+    background-color: antiquewhite;
+}
+
+/* Style du bloc de texte de confirmation */
+#confirmation-block {
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px; /* Ajout de la marge en haut */
+    width: 300px;
+    background-color: #ffcab5; /* Fond bleu */
+    text-align: center;
+    color: black; /* Texte noir */
+    padding: 10px;
+    display: none; /* Masquer le bloc par défaut */
+
+    position: relative; /* Ajout de position relative */
+    left: -90px; /* Décalage à gauche */
+    bottom: -90px;
+}
+
+/* Style du titre de confirmation */
+#titre-bloc {
+    color: brown; /* Titre en couleur bordeaux */
+    font-size: 20px;
+    margin-bottom: 10px;
+}

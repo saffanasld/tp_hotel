@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation d'hôtel</title>
+    <link rel="stylesheet" href="..\style\css-style.css">
+</head>
+<body>
+    <div class="cadre">
+    <div class="texte-centre">
+
+        <h1>BOOKING HOTEL</h1>
+
+<h3>Indiquez vos dates de réservation - Toutes annulation doit se faire 48h
+ avant </h3>
+    </div>
+    </div>
+    
+    <div id="confirmation-block">
+        <h3 id="titre-bloc">Confirmation réservation</h3>
+        <div id="details-reservation">
+            <p>Lieu de séjour : <br>
+                <span id="lieuReservation"></span></p>
+            <p>Nombre(s) d'adulte(s) : <br>
+                <span id="nbAdultes"></span></p>
+            <p>Nombre(s) d'enfant(s) : <br>
+                <span id="nbEnfants"></span></p>
+            <p>Nombre(s) de chambre(s) : <br>
+                <span id="nbChambres"></span></p>
+            <p>Voyage pour le travail : <br>
+                <span id="voyageTravail"></span></p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <form id="reservation-form" action="#" method="post">
+        <table border="1">
+            <tr>
+                <td colspan="2"><img src="..\images\Hotel-PNG_petit_petit.png" alt="hotel"></td>
+                <td colspan="2">
+                    <label for="lieu"> <h3 class="pays-label">France - Etranger</h3></label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><label for="lieu">Lieu de séjour</label></td>
+                <td colspan="2">
+                    <select id="lieu" name="lieu">
+                        <option value="Paris">Paris</option>
+                        <option value="Madrid">Madrid</option>
+                        <option value="Berlin">Berlin</option>
+                        <option value="Londres">Londres</option>
+                        <option value="Vienne">Vienne</option>
+                        <option value="Rome">Rome</option>
+                        <option value="Copenhague">Copenhague</option>
+                        <!-- options -->
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><label for="depart">Départ</label>
+                    <br><input type="date" id="depart" name="depart">
+                </td>
+                <td colspan="2"><label for="arrive">Arrivée</label>
+                    <br><input type="date" id="arrive" name="arrive">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="adultes">Adultes</label></td>
+                <td>
+                    <input type="number" id="adultes" name="adultes" min="0" value="0">
+                </td>
+                <td>
+                    <img src="..\images\bouton_addition.png" alt="Augmenter" onclick="augmenter('adultes')" width="51" height="50">
+                </td>
+                <td>
+                    <img src="..\images\bouton_baisser.png" alt="Baisser" onclick="baisser('adultes')" width="50" height="50">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="enfants">Enfants</label></td>
+                <td>
+                    <input type="number" id="enfants" name="enfants" min="0" value="0">
+                </td>
+                <td>
+                    <img src="..\images\bouton_addition.png" alt="Augmenter" onclick="augmenter('enfants')" width="51" height="50">
+                </td>
+                <td>
+                    <img src="..\images\bouton_baisser.png" alt="Baisser" onclick="baisser('enfants')" width="50" height="50">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="chambres">Chambres</label></td>
+                <td>
+                    <input type="number" id="chambres" name="chambres" min="0" value="0">
+                    <br>
+                </td>
+                <td>
+                    <img src="..\images\bouton_addition.png" alt="Augmenter" onclick="augmenter('chambres')" width="51" height="50">
+                </td>
+                <td>
+                    <img src="..\images\bouton_baisser.png" alt="Baisser" onclick="baisser('chambres')" width="50" height="50">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input type="button" class="btn" value="Rechercher" onclick="afficherConfirmation()"/>
+                </td>
+            </tr>    
+            <tr>
+                <td colspan="4">
+                    <input type="button" class="btn" value="Effacer" onclick="Effacer()"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br><input type="checkbox" name="travail" id="travail"/>
+                </td>
+                <td colspan="3">
+                    <label for="travail">Je voyage pour le travail </label>
+                </td>
+            </tr>
+            <td id="nouveau-champs-enfants" colspan="4"></td>
+        </table> 
+    </form>
+    <br>
+    <br>
+
+    <div class="pied-de-page">
+
+        <p>Indiquez vos dates de réservation - Toutes annulation doit se faire 48h avant </p>
+    </div>
+
+    <script>
+        function augmenter(fieldId) {
+            var field = document.getElementById(fieldId);
+            field.value = parseInt(field.value) + 1;
+            if (fieldId === 'enfants') {
+                MAJEnfants();
+            }
+        }
+
+        function baisser(fieldId) {
+            var field = document.getElementById(fieldId);
+            if (parseInt(field.value) > 0) {
+                field.value = parseInt(field.value) - 1;
+                if (fieldId === 'enfants') {
+                    MAJEnfants();
+                }
+            }
+        }
+
+        function MAJEnfants() {
+            var container = document.getElementById('nouveau-champs-enfants');
+            var NBEnfants = parseInt(document.getElementById('enfants').value);
+ 
+            container.innerHTML = '';
+
+            for (var i = 0; i < NBEnfants; i++) {
+                var ChampsEnfants = document.createElement('div');
+                ChampsEnfants.innerHTML = `
+                    <label for="nvenfant${i}">Âge enfant ${i+1} :</label> 
+                    <input type="number" id="nvenfant${i}" name="nvenfant${i}" min="0" max="17">
+                `;
+                container.appendChild(ChampsEnfants);
+            }
+        }
+        
+        function afficherConfirmation() {
+            var arrivee = document.getElementById("arrive").value;
+            var depart = document.getElementById("depart").value;
+            var lieu = document.getElementById("lieu").value;
+
+            if (!arrivee || !depart) {
+                alert("Veuillez sélectionner les dates d'arrivée et de départ.");
+                return;
+            }
+
+            var dateArrivee = new Date(arrivee);
+            var dateDepart = new Date(depart);
+
+            if (dateArrivee >= dateDepart) {
+                alert("La date de départ doit être ultérieure à la date d'arrivée.");
+                return;
+            }
+
+            // Récupérer les valeurs du formulaire
+            var nbAdultes = document.getElementById('adultes').value;
+            var nbEnfants = document.getElementById('enfants').value;
+            var nbChambres = document.getElementById('chambres').value;
+            var voyageTravail = document.getElementById('travail').checked ? "Oui" : "Non";
+
+            // Mettre à jour les valeurs dans le bloc de confirmation
+            document.getElementById('nbAdultes').textContent = nbAdultes;
+            document.getElementById('nbEnfants').textContent = nbEnfants;
+            document.getElementById('nbChambres').textContent = nbChambres;
+            document.getElementById('voyageTravail').textContent = voyageTravail;
+            document.getElementById('lieuReservation').textContent = lieu;
+
+            // Afficher le bloc de confirmation
+            document.getElementById('confirmation-block').style.display = 'block';
+        }
+
+        function Effacer() {
+            // Réinitialiser les valeurs du formulaire
+            document.getElementById('reservation-form').reset();
+            // Masquer le bloc de confirmation
+            document.getElementById('confirmation-block').style.display = 'none';
+            // Vider le champ des enfants
+            document.getElementById('nouveau-champs-enfants').innerHTML = '';
+        }
+
+    </script>
+</body>
+</html>
